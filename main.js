@@ -141,7 +141,7 @@ moviesBlock.forEach((item, index) => {
 
 modalBlok.addEventListener("click", function (evt) {
 
-  if (evt.target.matches(".exit-btn")) {
+  if (evt.target.matches(".exit-btn") || evt.target.matches(".span")) {
     evt.target.parentNode.classList.remove("visible");
     modalBlok.classList.remove("open")
     document.querySelector("body").classList.remove("bg")
@@ -223,10 +223,20 @@ normalizedMovies.forEach(element => {
 
 
 
-var newRegexp = new RegExp (searchInput.value,"gi");
-var searchResult = normalizedMovies.filter(movie => {
-  return movie.title.match(newRegexp)
-})
 searchBtn.addEventListener("click",(evt)=> {
- console.log(searchResult());
+  var newArray;
+ var searchedMovie = searchInput.value.trim();
+ var newRegexp = new RegExp(searchedMovie, "gi");
+ var searchResult = normalizedMovies.filter(movie => {
+   return movie.title.match(newRegexp)
+ })
+  function searchingSlice(number) {
+  var array;
+  array = searchResult.slice(Number(number) - 1, 12 * Number(number));
+  return array
+  }
+ blok.innerHTML = "";
+ newArray = searchingSlice(Number(pageCount.textContent))
+ cloningTemplateContent(newArray)
+
 })

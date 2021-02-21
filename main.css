@@ -287,20 +287,22 @@ article {
   align-items: center;
   padding: 20px 10px;
   height: 40px;
+  width: 40px;
   font-size: 45px;
   background-color: transparent;
   color: rgb(10, 10, 10);
   outline: none;
   border: none !important;
   outline: none !important;
+  z-index: 100;
 }
+
 
 .exit-btn:hover,
 .exit-btn:active {
   border: none !important;
   outline: none !important;
 }
-
 .list li {
   padding: 10px 20px;
 }
