@@ -85,10 +85,10 @@ ulElement.addEventListener("click", (evt) => {
   if (evt.target.matches(".arrow-right")) {
     newArray = executing(Number(evt.target.textContent));
 
-    if (pageCount.textContent == 3) {
+    if (pageCount.textContent == 314) {
       evt.target.disabled = true
     }
-    else if (!pageCount.textContent == 3) {
+    else if (!pageCount.textContent == 314) {
       evt.target.disabled = false;
       pageCount.textContent = Number(pageCount.textContent) + 1
       evt.target.previousElementSibling.previousElementSibling.disabled = false
@@ -164,7 +164,7 @@ blok.addEventListener('click', (evt) => {
   newModalTemplate.querySelector('.modal-img').src = findedMovie.smallPoster;
   newModalTemplate.querySelector('.modal-title').textContent = findedMovie.title;
   newModalTemplate.querySelector('.modal-info').textContent = findedMovie.summary;
-  newModalTemplate.querySelector('.modal-trailer').textContent = findedMovie.trailer;
+  newModalTemplate.querySelector('.modal-trailer').href = findedMovie.trailer;
   newModalTemplate.querySelector('.modal-year').textContent = findedMovie.year;
   newModalTemplate.querySelector('.modal-language').textContent = findedMovie.language;
   findedMovie.categories.forEach(item => {
@@ -191,11 +191,10 @@ var moviesWrapper = document.querySelector(".movies-body")
 var watchBtn = document.querySelector(".watch");
 watchBtn.addEventListener("click", (evt) => {
   moviesWrapper.classList.remove("hidden");
-  moviesWrapper.style.marginTop = "-50px"
   main.classList.add("closed");
   header.classList.add("bgcolor");
-  moviesWrapper.style.marginTop = "100px"
   header.style.marginBottom = "0px";
+  header.style.marginTop = "-30px";
   header.style.backgroundColor = "#000";
   footer.style.backgroundColor = "#000";
   document.querySelector("body").classList.add("changed");
@@ -208,7 +207,6 @@ window.addEventListener("scroll", function () {
   }
   if (window.pageYOffset < 30) {
     header.classList.remove("onlycolor");
-    moviesWrapper.style.marginTop = "100px";
     var some = setInterval(() => {
 
     }, 1000);
@@ -225,6 +223,10 @@ normalizedMovies.forEach(element => {
 
 
 
-// let select = movies.addEventListener("change", (evt) => {
-
-// })
+var newRegexp = new RegExp (searchInput.value,"gi");
+var searchResult = normalizedMovies.filter(movie => {
+  return movie.title.match(newRegexp)
+})
+searchBtn.addEventListener("click",(evt)=> {
+ console.log(searchResult());
+})
