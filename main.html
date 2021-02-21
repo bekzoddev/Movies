@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<link rel="stylesheet" href="./css/bootstrap.min.css">
+<link rel="stylesheet" href="./main.css">
+
+<body>
+<div id="header" class="header">
+  <div class="container1">
+    <div class="nav">
+      <a class="nav__link" href="#">Home</a>
+      <a class="nav__link" href="#">Movies</a>
+      <a class="nav__link" href="#">Gallery</a>
+      <a class="nav__link" href="#">Contacts</a>
+      <a class="nav__link" href="#">FAQ</a>
+      <a class="nav__link" href="#">Comments</a>
+      <select class="form-select" name="movies" id="select-movies">
+        <option value="" selected disabled>Genre</option>
+        <option value="drama">Drama</option>
+        <option value="comedy">Comedy</option>
+        <option value="fantasy">Fantasy</option>
+        <option value="biography">Biography</option>
+        <option value="documentary">Documentary</option>
+        <option value="history">History</option>
+      </select>
+      <select class="form-select" name="language" id="select-language">
+        <option value="english">english</option>
+        <option value="uzbek">rus</option>
+        <option value="rus">ozbek</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<div id="main" class="main">
+  <h2>
+    Welcome to Our <span style="color: coral;">online movies portal</span>
+  </h2>
+  <p>
+    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi magni quaerat illum iste cum inventore autem vero enim ex ipsum quibusdam nisi itaque numquam, architecto ab unde, possimus cupiditate ullam quisquam. Aliquam, nobis iste adipisci ipsa placeat officia a veritatis alias facere dolorum fuga quos aliquid hic incidunt deleniti
+  </p>
+  <button class="btn btn-warning watch">
+  Watch movies
+  </button>
+</div>
+<div class="movies-body hidden">
+    <article class="d-flex"><input class="form-control search-input" type="search"><button
+        class="btn btn-danger search-btn">
+        search</button>
+    </article>
+    <main>
+      <div id="blok" class="blok">
+      </div>
+    </main>
+    <div id="wrapper" class="wrapper d-flex" style="text-align: center;margin-bottom: 20px;">
+
+    </div>
+    <ul id="list" class="list text-center">
+   <button class="arrow-left"></button>
+   <h4>Current page <span class="page-count">1</span></h4>
+   <button class="arrow-right">
+   </button>
+    </ul>
+    <div class="modal-wrapper">
+      <div class="modal-blok">
+        <div class="modal-section">
+
+        </div>
+      </div>
+    </div>
+</div>
+  <!-- modal -->
+  <template class="template-modal">
+    <div class="modaldiv" data-id="">
+      <button class="exit-btn">&times</button>
+      <div class="modal-body" >
+        <img  class="modal-img" src="#" width="300" height="200">
+        <div class="modal-title"></div>
+        <div class="modal-info text-muted"></div>
+        <div class="d-flex align-items-center justify-content-between" style="width: 100px;">
+          <div class="modal-rating"></div>
+          <img src="img/calendar.svg" alt="Calendar" width="25" height="25">
+          <img class="img" src="img/star.svg" alt="Star" width="25" height="25">
+        </div>
+        <a href="R" class="modal-trailer">You Tube link</a>
+        <div class="modal-year"></div>
+        <div class="modal-language"></div>
+        <div class="modal-categories"></div>
+      </div>
+    </div>
+  </template>
+  <!-- end modal -->
+
+  <template class="template">
+    <div class="block" data-id="">
+      <div>
+        <img class="movie__poster card-img-top" src="https://picsum.photos//870/300" alt="" width="300" height="200">
+      </div>
+      <h3 class="movie__title h5 text-truncate font-weight-bold "></h3>
+      <div class="block-div">
+
+        <p class="card-text d-flex justify-content-between">
+          <img src="img/calendar.svg" alt="Calendar" width="25" height="25">
+          <span class="movie__year text-secondary" ></span>
+        </p>
+        <div class="d-flex justify-content-between align-content-center ">
+          <img class="img" src="img/star.svg" alt="Star" width="25" height="25">
+          <span class="movie__rating"></span>
+        </div>
+
+        <div  class="text-div">
+          <button class="btn tugma exit1">Close</button>
+            <div class="text ">
+
+            </div>
+        </div>
+        <div class="d-flex justify-content-between text-secondary">
+          <div class="categories ">
+
+          </div>
+          <div class="language"></div>
+        </div>
+
+      </div>
+      <div class="d-flex justify-content-between div align-items-center">
+        <a class="youtube_link" href="#">You Tube link</a>
+        <button class="btn btn-success info" data-id="">Info</button>
+      </div>
+    </div>
+    </div>
+
+  </template>
+  <template class="pagination-template">
+    <div class="pagination-div d-flex">
+      <a class="pagination-link mx-2" href="#" data-id="">1</a>
+    </div>
+  </template>
+  <footer id="footer" class="footer" style=" padding: 25px 35px;">
+    <div class="footer__nav d-flex justify-content-between mb-4"  style="width: 1360px; margin: auto;">
+      <a class="footer__link" href="#">Home</a>
+      <a class="footer__link" href="#">Gallary</a>
+      <a class="footer__link" href="#">About Us</a>
+      <a class="footer__link" href="#">Proposals</a>
+      <a class="footer__link" href="#">Contacts</a>
+      <a class="footer__link" href="#">Search</a>
+      <a class="footer__link" href="#">FAQ</a>
+    </div>
+    <div class="div text-center text-white" style="font-size: 18px;padding: 0;">
+      &copy; All right reserved
+    </div>
+  </footer>
+
+  <script src="./js/movies.js"></script>
+  <script src="./js/normalized-movies.js"></script>
+  <script src="./main.js"></script>
+
+</body>
+
+</html>
