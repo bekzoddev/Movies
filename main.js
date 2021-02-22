@@ -297,15 +297,40 @@ searchBtn.addEventListener("click", (evt) => {
 var bodyElement = document.querySelector("#body")
 var time = 1;
 
-setInterval(() => {
-  bodyElement.style.backgroundImage = `url(./img/hero${time}.jpg)`
-  time++;
-  if (time === 6) {
-    time = 1;
-  }
-}, 4000);
+let clearIntervalId;
+var bgImgchanged = function (vaqt) {
+  clearIntervalId = setInterval(() => {
+    bodyElement.style.backgroundImage = `url(./img/hero${time}.jpg)`
+    time++;
+    if (time === 6) {
+      time = 1;
+    }
+  }, vaqt);
+}
+bgImgchanged(2000)
+var first = 1;
+var second = 3;
+var last = 5;
+var headerColorChange = setInterval(() => {
+  first  = first +8;
+  second ++;
+  last = last + 12;
+    if (200 <= first) {
+      first = 0;
+      second = 3;
+      last = 5;
+    }
+
+header.style.backgroundColor = `rgb(${first},${second},${last})`
+}, 1000);
+
 watchBtn.addEventListener("click", (evt) => {
-  body.classList.add("bgimg")
+  var exitbtn = document.createElement("button");
+  exitbtn.classList.add("knopka","btn");
+  exitbtn.textContent = "Exit";
+  blok.appendChild(exitbtn)
+  bodyElement.style.backgroundImage = "url(none)"
+  clearInterval(clearIntervalId)
   moviesWrapper.classList.remove("hidden");
   main.classList.add("closed");
   header.classList.add("bgcolor");
