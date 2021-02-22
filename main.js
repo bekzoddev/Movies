@@ -67,8 +67,8 @@ function executing(id) {
 
 var ulElement = document.querySelector("#list");
 
+function countingPage(evt) {
 
-ulElement.addEventListener("click", (evt) => {
 
   ulElement.querySelectorAll("li").forEach(item => {
     item.classList.remove("active");
@@ -84,19 +84,17 @@ ulElement.addEventListener("click", (evt) => {
   }
   if (evt.target.matches(".arrow-right")) {
     newArray = executing(Number(evt.target.textContent));
-
+    console.log("ffffffffffffffff");
     if (pageCount.textContent == 314) {
       evt.target.disabled = true
-    }
-    else if (!pageCount.textContent == 314) {
+    } else if (!pageCount.textContent == 314) {
       evt.target.disabled = false;
       pageCount.textContent = Number(pageCount.textContent) + 1
       evt.target.previousElementSibling.previousElementSibling.disabled = false
-    }
-     else {
-       evt.target.disabled = false;
-       pageCount.textContent = Number(pageCount.textContent) + 1
-       evt.target.previousElementSibling.previousElementSibling.disabled = false
+    } else {
+      evt.target.disabled = false;
+      pageCount.textContent = Number(pageCount.textContent) + 1
+      evt.target.previousElementSibling.previousElementSibling.disabled = false
     }
     blok.innerHTML = "";
     newArray = executing(Number(pageCount.textContent));
@@ -111,14 +109,67 @@ ulElement.addEventListener("click", (evt) => {
     } else {
       pageCount.textContent = Number(pageCount.textContent) - 1
       evt.target.disabled = false;
-     evt.target.nextElementSibling.nextElementSibling.disabled = false
+      evt.target.nextElementSibling.nextElementSibling.disabled = false
     }
 
     blok.innerHTML = "";
     newArray = executing(Number(pageCount.textContent));
     cloningTemplateContent(newArray);
   }
-})
+}
+
+// ulElement.addEventListener("click", (evt) => {
+
+//   ulElement.querySelectorAll("li").forEach(item => {
+//     item.classList.remove("active");
+
+//   })
+
+//   var newArray;
+//   if (evt.target.matches("li")) {
+//     newArray = executing(Number(evt.target.textContent));
+//     blok.innerHTML = "";
+//     evt.target.classList.add("active")
+//     cloningTemplateContent(newArray);
+//   }
+//   if (evt.target.matches(".arrow-right")) {
+//     newArray = executing(Number(evt.target.textContent));
+//         console.log("ffffffffffffffff");
+//     if (pageCount.textContent == 314) {
+//       evt.target.disabled = true
+//     }
+//     else if (!pageCount.textContent == 314) {
+//       evt.target.disabled = false;
+//       pageCount.textContent = Number(pageCount.textContent) + 1
+//       evt.target.previousElementSibling.previousElementSibling.disabled = false
+//     }
+//      else {
+//        evt.target.disabled = false;
+//        pageCount.textContent = Number(pageCount.textContent) + 1
+//        evt.target.previousElementSibling.previousElementSibling.disabled = false
+//     }
+//     blok.innerHTML = "";
+//     newArray = executing(Number(pageCount.textContent));
+//     cloningTemplateContent(newArray);
+//   }
+//   if (evt.target.matches(".arrow-left")) {
+//     newArray = executing(Number(evt.target.textContent));
+//     console.log(pageCount.textContent);
+//     if (pageCount.textContent <= 1) {
+//       evt.target.disabled = true;
+
+//     } else {
+//       pageCount.textContent = Number(pageCount.textContent) - 1
+//       evt.target.disabled = false;
+//      evt.target.nextElementSibling.nextElementSibling.disabled = false
+//     }
+
+//     blok.innerHTML = "";
+//     newArray = executing(Number(pageCount.textContent));
+//     cloningTemplateContent(newArray);
+//   }
+// })
+ulElement.addEventListener("click",countingPage)
 var closeBtn = document.querySelector(".tugma");
 var infoBtn = document.querySelectorAll(".info");
 
@@ -222,9 +273,14 @@ normalizedMovies.forEach(element => {
 });
 
 
+var nextBtn = document.querySelector(".arrow-right");
+var prevBtn = document.querySelector(".arrow-left");
+
 
 searchBtn.addEventListener("click",(evt)=> {
-  var newArray;
+ var newArray;
+
+
  var searchedMovie = searchInput.value.trim();
  var newRegexp = new RegExp(searchedMovie, "gi");
  var searchResult = normalizedMovies.filter(movie => {
@@ -235,8 +291,16 @@ searchBtn.addEventListener("click",(evt)=> {
   array = searchResult.slice(Number(number) - 1, 12 * Number(number));
   return array
   }
- blok.innerHTML = "";
+
+  nextBtn.addEventListener("click", function () {
+    blok.innerHTML = "";
+    ulElement.removeEventListener("click",countingPage);
+    newArray = searchingSlice(Number(pageCount.textContent)+1)
+    cloningTemplateContent(newArray);
+  })
+  blok.innerHTML = "";
  newArray = searchingSlice(Number(pageCount.textContent))
- cloningTemplateContent(newArray)
+ cloningTemplateContent(newArray);
+
 
 })
