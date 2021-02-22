@@ -268,10 +268,13 @@ var prevBtn = document.querySelector(".arrow-left");
 
 searchBtn.addEventListener("click", (evt) => {
   var newArray;
+  ulElement.remove();
+  removed.classList.remove("removed")
   ulElement.removeEventListener("click", countingPage);
 
   var searchedMovie = searchInput.value.trim();
   var newRegexp = new RegExp(searchedMovie, "gi");
+
   var searchResult = normalizedMovies.filter(movie => {
     return movie.title.match(newRegexp)
   })
@@ -283,6 +286,14 @@ searchBtn.addEventListener("click", (evt) => {
   }
   newArray = searchingSlice(Number(pageCount.textContent))
   blok.innerHTML = "";
+  var exitbtn = document.createElement("button");
+  exitbtn.classList.add("knopka", "btn");
+  exitbtn.textContent = "Exit";
+  blok.appendChild(exitbtn)
+  exitbtn.addEventListener("click", function () {
+
+    window.location.href = "./main.html"
+  })
   cloningTemplateContent(newArray);
 
   nextBtn.addEventListener("click", function () {
@@ -312,21 +323,21 @@ var first = 1;
 var second = 3;
 var last = 5;
 var headerColorChange = setInterval(() => {
-  first  = first +8;
-  second ++;
+  first = first + 8;
+  second++;
   last = last + 12;
-    if (200 <= first) {
-      first = 0;
-      second = 3;
-      last = 5;
-    }
+  if (200 <= first) {
+    first = 0;
+    second = 3;
+    last = 5;
+  }
 
-header.style.backgroundColor = `rgb(${first},${second},${last})`
+  header.style.backgroundColor = `rgb(${first},${second},${last})`
 }, 1000);
 
 watchBtn.addEventListener("click", (evt) => {
   var exitbtn = document.createElement("button");
-  exitbtn.classList.add("knopka","btn");
+  exitbtn.classList.add("knopka", "btn");
   exitbtn.textContent = "Exit";
   blok.appendChild(exitbtn)
   bodyElement.style.backgroundImage = "url(none)"
@@ -340,4 +351,13 @@ watchBtn.addEventListener("click", (evt) => {
   footer.style.backgroundColor = "#000";
   document.querySelector("body").classList.add("changed");
 
+  exitbtn.addEventListener("click", function () {
+
+    window.location.href = "./main.html"
+  })
+
 })
+var moreBtn = document.querySelector(".more");
+ moreBtn.addEventListener("click",function () {
+
+ })

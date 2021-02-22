@@ -200,6 +200,9 @@ article {
 .knopka:hover, .knopka:active{
   color: #fff;
 }
+.removed {
+  display: none;
+}
 .exit {
   position: absolute;
   right: 0;
