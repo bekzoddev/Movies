@@ -264,7 +264,7 @@ normalizedMovies.forEach(element => {
 
 var nextBtn = document.querySelector(".arrow-right");
 var prevBtn = document.querySelector(".arrow-left");
-
+var moreBtn = document.querySelector(".more");
 
 searchBtn.addEventListener("click", (evt) => {
   var newArray;
@@ -301,6 +301,20 @@ searchBtn.addEventListener("click", (evt) => {
     blok.innerHTML = "";
     cloningTemplateContent(newArray);
   })
+   moreBtn.addEventListener("click", function () {
+     if (searchResult.length > 12) {
+       blok.innerHTML = "";
+       cloningTemplateContent(searchResult);
+     }
+      var exitbtn = document.createElement("button");
+      exitbtn.classList.add("knopka", "btn");
+      exitbtn.textContent = "Exit";
+      blok.appendChild(exitbtn)
+      exitbtn.addEventListener("click", function () {
+
+        window.location.href = "./main.html"
+      })
+   })
 
 
 
@@ -357,7 +371,4 @@ watchBtn.addEventListener("click", (evt) => {
   })
 
 })
-var moreBtn = document.querySelector(".more");
- moreBtn.addEventListener("click",function () {
 
- })
