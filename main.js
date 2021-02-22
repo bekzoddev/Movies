@@ -39,7 +39,7 @@ cloningTemplateContent(newArray)
 var page = 1;
 var pageSize = 12;
 var pageCounter = Math.ceil(normalizedMovies.length / pageSize);
-// console.log(pageCounter);
+
 var paginationArray = [];
 
 // function paginating(number) {
@@ -60,8 +60,7 @@ var summ;
 
 function executing(id) {
   var array = normalizedMovies.slice(((id - 1) * pageSize), pageSize * id);
-  // console.log(array);
-  // console.log(id);
+
   return array
 }
 
@@ -84,7 +83,7 @@ function countingPage(evt) {
   }
   if (evt.target.matches(".arrow-right")) {
     newArray = executing(Number(evt.target.textContent));
-    console.log("ffffffffffffffff");
+
     if (pageCount.textContent == 314) {
       evt.target.disabled = true
     } else if (!pageCount.textContent == 314) {
@@ -169,7 +168,7 @@ function countingPage(evt) {
 //     cloningTemplateContent(newArray);
 //   }
 // })
-ulElement.addEventListener("click",countingPage)
+ulElement.addEventListener("click", countingPage)
 var closeBtn = document.querySelector(".tugma");
 var infoBtn = document.querySelectorAll(".info");
 
@@ -240,17 +239,7 @@ searchBtn.addEventListener("click", (evt) => {
 })
 var moviesWrapper = document.querySelector(".movies-body")
 var watchBtn = document.querySelector(".watch");
-watchBtn.addEventListener("click", (evt) => {
-  moviesWrapper.classList.remove("hidden");
-  main.classList.add("closed");
-  header.classList.add("bgcolor");
-  header.style.marginBottom = "0px";
-  header.style.marginTop = "-30px";
-  header.style.backgroundColor = "#000";
-  footer.style.backgroundColor = "#000";
-  document.querySelector("body").classList.add("changed");
 
-})
 window.addEventListener("scroll", function () {
   if (window.pageYOffset > 30) {
     header.classList.add("onlycolor");
@@ -277,30 +266,53 @@ var nextBtn = document.querySelector(".arrow-right");
 var prevBtn = document.querySelector(".arrow-left");
 
 
-searchBtn.addEventListener("click",(evt)=> {
- var newArray;
- ulElement.removeEventListener("click", countingPage);
+searchBtn.addEventListener("click", (evt) => {
+  var newArray;
+  ulElement.removeEventListener("click", countingPage);
 
- var searchedMovie = searchInput.value.trim();
- var newRegexp = new RegExp(searchedMovie, "gi");
- var searchResult = normalizedMovies.filter(movie => {
-   return movie.title.match(newRegexp)
- })
+  var searchedMovie = searchInput.value.trim();
+  var newRegexp = new RegExp(searchedMovie, "gi");
+  var searchResult = normalizedMovies.filter(movie => {
+    return movie.title.match(newRegexp)
+  })
+
   function searchingSlice(number) {
-  var array;
-  array = searchResult.slice(Number(number) - 1, 12 * Number(number));
-  return array
+    var array;
+    array = searchResult.slice(Number(number) - 1, 12 * Number(number));
+    return array
   }
   newArray = searchingSlice(Number(pageCount.textContent))
   blok.innerHTML = "";
-    cloningTemplateContent(newArray);
+  cloningTemplateContent(newArray);
 
   nextBtn.addEventListener("click", function () {
-    newArray = searchingSlice(Number(pageCount.textContent)+1)
+    newArray = searchingSlice(Number(pageCount.textContent) + 1)
     blok.innerHTML = "";
     cloningTemplateContent(newArray);
   })
 
 
+
+})
+var bodyElement = document.querySelector("#body")
+var time = 1;
+
+setInterval(() => {
+  bodyElement.style.backgroundImage = `url(./img/hero${time}.jpg)`
+  time++;
+  if (time === 6) {
+    time = 1;
+  }
+}, 4000);
+watchBtn.addEventListener("click", (evt) => {
+  body.classList.add("bgimg")
+  moviesWrapper.classList.remove("hidden");
+  main.classList.add("closed");
+  header.classList.add("bgcolor");
+  header.style.marginBottom = "0px";
+  header.style.marginTop = "-30px";
+  header.style.backgroundColor = "#000";
+  footer.style.backgroundColor = "#000";
+  document.querySelector("body").classList.add("changed");
 
 })
