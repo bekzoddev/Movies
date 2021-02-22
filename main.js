@@ -205,13 +205,13 @@ modalBlok.addEventListener("click", function (evt) {
 })
 
 blok.addEventListener('click', (evt) => {
-  const movieImdbId = evt.target.dataset.imdbid
+  var movieImdbId = evt.target.dataset.imdbid
 
-  const findedMovie = normalizedMovies.find(movie => {
+  var findedMovie = normalizedMovies.find(movie => {
     return movie.imdbId === movieImdbId
   })
-  const template = document.createDocumentFragment();
-  const newModalTemplate = templateModal.cloneNode(true);
+  var template = document.createDocumentFragment();
+  var newModalTemplate = templateModal.cloneNode(true);
   newModalTemplate.querySelector('.modal-img').src = findedMovie.smallPoster;
   newModalTemplate.querySelector('.modal-title').textContent = findedMovie.title;
   newModalTemplate.querySelector('.modal-info').textContent = findedMovie.summary;
@@ -279,7 +279,7 @@ var prevBtn = document.querySelector(".arrow-left");
 
 searchBtn.addEventListener("click",(evt)=> {
  var newArray;
-
+ ulElement.removeEventListener("click", countingPage);
 
  var searchedMovie = searchInput.value.trim();
  var newRegexp = new RegExp(searchedMovie, "gi");
@@ -291,16 +291,16 @@ searchBtn.addEventListener("click",(evt)=> {
   array = searchResult.slice(Number(number) - 1, 12 * Number(number));
   return array
   }
+  newArray = searchingSlice(Number(pageCount.textContent))
+  blok.innerHTML = "";
+    cloningTemplateContent(newArray);
 
   nextBtn.addEventListener("click", function () {
-    blok.innerHTML = "";
-    ulElement.removeEventListener("click",countingPage);
     newArray = searchingSlice(Number(pageCount.textContent)+1)
+    blok.innerHTML = "";
     cloningTemplateContent(newArray);
   })
-  blok.innerHTML = "";
- newArray = searchingSlice(Number(pageCount.textContent))
- cloningTemplateContent(newArray);
+
 
 
 })
