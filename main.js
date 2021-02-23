@@ -295,12 +295,19 @@ searchBtn.addEventListener("click", (evt) => {
     window.location.href = "./main.html"
   })
   cloningTemplateContent(newArray);
+   if (newArray.length <= 0 ) {
+     remove(exitbtn)
+     var creteText = document.createElement("p");
+     creteText.textContent = "Afsuski hech narsa topilmadi";
+     blok.appendChild(creteText)
+   }
 
   nextBtn.addEventListener("click", function () {
     newArray = searchingSlice(Number(pageCount.textContent) + 1)
     blok.innerHTML = "";
     cloningTemplateContent(newArray);
   })
+
    moreBtn.addEventListener("click", function () {
      if (searchResult.length > 12) {
        blok.innerHTML = "";
@@ -332,7 +339,7 @@ var bgImgchanged = function (vaqt) {
     }
   }, vaqt);
 }
-bgImgchanged(2000)
+bgImgchanged(5000)
 var first = 1;
 var second = 3;
 var last = 5;
