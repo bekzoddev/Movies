@@ -80,9 +80,24 @@ function countingPage(evt) {
     blok.innerHTML = "";
     evt.target.classList.add("active")
     cloningTemplateContent(newArray);
+
   }
   if (evt.target.matches(".arrow-right")) {
     newArray = executing(Number(evt.target.textContent));
+    moreBtn.addEventListener("click", function () {
+      if (searchResult.length > 12) {
+        blok.innerHTML = "";
+        cloningTemplateContent(searchResult);
+      }
+      var exitbtn = document.createElement("button");
+      exitbtn.classList.add("knopka", "btn");
+      exitbtn.textContent = "Exit";
+      blok.appendChild(exitbtn)
+      exitbtn.addEventListener("click", function () {
+
+        window.location.href = "./main.html"
+      })
+    })
 
     if (pageCount.textContent == 314) {
       evt.target.disabled = true
@@ -101,6 +116,20 @@ function countingPage(evt) {
   }
   if (evt.target.matches(".arrow-left")) {
     newArray = executing(Number(evt.target.textContent));
+    moreBtn.addEventListener("click", function () {
+      if (searchResult.length > 12) {
+        blok.innerHTML = "";
+        cloningTemplateContent(searchResult);
+      }
+      var exitbtn = document.createElement("button");
+      exitbtn.classList.add("knopka", "btn");
+      exitbtn.textContent = "Exit";
+      blok.appendChild(exitbtn)
+      exitbtn.addEventListener("click", function () {
+
+        window.location.href = "./main.html"
+      })
+    })
     console.log(pageCount.textContent);
     if (pageCount.textContent <= 1) {
       evt.target.disabled = true;
@@ -111,10 +140,13 @@ function countingPage(evt) {
       evt.target.nextElementSibling.nextElementSibling.disabled = false
     }
 
+
     blok.innerHTML = "";
     newArray = executing(Number(pageCount.textContent));
     cloningTemplateContent(newArray);
   }
+
+
 }
 
 // ulElement.addEventListener("click", (evt) => {
@@ -339,7 +371,7 @@ var bgImgchanged = function (vaqt) {
     }
   }, vaqt);
 }
-bgImgchanged(5000)
+bgImgchanged(4000)
 var first = 1;
 var second = 3;
 var last = 5;
@@ -359,7 +391,7 @@ var headerColorChange = setInterval(() => {
 watchBtn.addEventListener("click", (evt) => {
   var exitbtn = document.createElement("button");
   exitbtn.classList.add("knopka", "btn");
-  exitbtn.textContent = "Exit";
+   exitbtn.textContent = "Exit";
   blok.appendChild(exitbtn)
   bodyElement.style.backgroundImage = "url(none)"
   clearInterval(clearIntervalId)
