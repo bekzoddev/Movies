@@ -22,12 +22,16 @@
       <a class="nav__link" href="#">Comments</a>
       <select class="form-select" name="movies" id="select-movies">
         <option value="" selected disabled>Genre</option>
-        <option value="drama">Drama</option>
-        <option value="comedy">Comedy</option>
-        <option value="fantasy">Fantasy</option>
-        <option value="biography">Biography</option>
-        <option value="documentary">Documentary</option>
-        <option value="history">History</option>
+        <option value="Drama">Drama</option>
+        <option value="Comedy">Comedy</option>
+        <option value="Fantasy">Fantasy</option>
+        <option value="Biography">Biography</option>
+        <option value="Documentary">Documentary</option>
+        <option value="History">History</option>
+        <option value="Sport">Sport</option>
+        <option value="Crime">Crime</option>
+        <option value="Romance">Romance</option>
+        <option value="Animation">Animation</option>
       </select>
       <select class="form-select" name="language" id="select-language">
         <option value="english">english</option>
@@ -125,11 +129,14 @@
 
             </div>
         </div>
-        <div class="d-flex justify-content-between text-secondary">
-          <div class="categories ">
+        <div class=" text-secondary">
 
+          <div class="categories d-flex flex-wrap  justify-content-center" >
+              <span class="text-dark font-weight-bold">Categories:</span>
           </div>
-          <div class="language"></div>
+          <div class="language d-flex justify-content-center text-danger">
+            <span style="margin-right: 5px;">Language:</span>
+          </div>
         </div>
 
       </div>

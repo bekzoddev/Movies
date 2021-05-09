@@ -15,12 +15,18 @@ function cloningTemplateContent(array) {
     newTemplateElement.querySelector(".text").textContent = element.summary;
     newTemplateElement.querySelector(".youtube_link").href = element.trailer;
     newTemplateElement.querySelector(".movie__poster").src = element.smallPoster;
-    newTemplateElement.querySelector(".language").textContent = element.language;
+    var some = document.createElement("span");
+    some.textContent = element.language;
+    newTemplateElement.querySelector(".language").appendChild(some)
 
     newTemplateElement.querySelector(".info").dataset.imdbid = element.imdbId;
     newTemplateElement.querySelector(".block").dataset.id = index + 1;
     element.categories.forEach(item => {
-      newTemplateElement.querySelector(".categories").textContent = item
+      var some =  document.createElement("span");
+      some.textContent = item;
+      some.style.margin = "0px 5px"
+     var summ =   newTemplateElement.querySelector(".categories");
+     summ.appendChild(some)
 
     })
     elNewFragmentElement.appendChild(newTemplateElement)
@@ -40,20 +46,7 @@ var page = 1;
 var pageSize = 12;
 var pageCounter = Math.ceil(normalizedMovies.length / pageSize);
 
-var paginationArray = [];
 
-// function paginating(number) {
-//   for (page; page <= number; page++) {
-//     var createLi = document.createElement("li");
-//     createLi.textContent = page;
-//     createLi.dataset.id = page
-//     paginationArray.push(createLi)
-//     list.appendChild(createLi)
-
-//   }
-// }
-// paginating((Math.ceil(normalizedMovies.length / 12)))
-// paginating(9)
 
 var pageCount = document.querySelector(".page-count");
 var summ;
@@ -149,57 +142,7 @@ function countingPage(evt) {
 
 }
 
-// ulElement.addEventListener("click", (evt) => {
 
-//   ulElement.querySelectorAll("li").forEach(item => {
-//     item.classList.remove("active");
-
-//   })
-
-//   var newArray;
-//   if (evt.target.matches("li")) {
-//     newArray = executing(Number(evt.target.textContent));
-//     blok.innerHTML = "";
-//     evt.target.classList.add("active")
-//     cloningTemplateContent(newArray);
-//   }
-//   if (evt.target.matches(".arrow-right")) {
-//     newArray = executing(Number(evt.target.textContent));
-//         console.log("ffffffffffffffff");
-//     if (pageCount.textContent == 314) {
-//       evt.target.disabled = true
-//     }
-//     else if (!pageCount.textContent == 314) {
-//       evt.target.disabled = false;
-//       pageCount.textContent = Number(pageCount.textContent) + 1
-//       evt.target.previousElementSibling.previousElementSibling.disabled = false
-//     }
-//      else {
-//        evt.target.disabled = false;
-//        pageCount.textContent = Number(pageCount.textContent) + 1
-//        evt.target.previousElementSibling.previousElementSibling.disabled = false
-//     }
-//     blok.innerHTML = "";
-//     newArray = executing(Number(pageCount.textContent));
-//     cloningTemplateContent(newArray);
-//   }
-//   if (evt.target.matches(".arrow-left")) {
-//     newArray = executing(Number(evt.target.textContent));
-//     console.log(pageCount.textContent);
-//     if (pageCount.textContent <= 1) {
-//       evt.target.disabled = true;
-
-//     } else {
-//       pageCount.textContent = Number(pageCount.textContent) - 1
-//       evt.target.disabled = false;
-//      evt.target.nextElementSibling.nextElementSibling.disabled = false
-//     }
-
-//     blok.innerHTML = "";
-//     newArray = executing(Number(pageCount.textContent));
-//     cloningTemplateContent(newArray);
-//   }
-// })
 ulElement.addEventListener("click", countingPage)
 var closeBtn = document.querySelector(".tugma");
 var infoBtn = document.querySelectorAll(".info");
@@ -218,7 +161,6 @@ moviesBlock.forEach((item, index) => {
     }
   })
 })
-
 
 
 modalBlok.addEventListener("click", function (evt) {
@@ -373,12 +315,12 @@ var bgImgchanged = function (vaqt) {
 }
 bgImgchanged(4000)
 var first = 1;
-var second = 3;
+var second = 12;
 var last = 5;
 var headerColorChange = setInterval(() => {
-  first = first + 8;
-  second++;
-  last = last + 12;
+  first = first + 5;
+  second = second + 11;
+  last = last + 80;
   if (200 <= first) {
     first = 0;
     second = 3;
@@ -386,7 +328,7 @@ var headerColorChange = setInterval(() => {
   }
 
   header.style.backgroundColor = `rgb(${first},${second},${last})`
-}, 1000);
+}, 2000);
 
 watchBtn.addEventListener("click", (evt) => {
   var exitbtn = document.createElement("button");
@@ -411,3 +353,13 @@ watchBtn.addEventListener("click", (evt) => {
 
 })
 
+
+var selectMovies = document.querySelector("#select-movies");
+selectMovies.addEventListener("change",function () {
+ var newArray = normalizedMovies.filter(item => {
+   return item.categories.includes(this.value)
+ })
+ blok.innerHTML = "";
+ newArray = newArray.slice(0,12)
+ cloningTemplateContent(newArray)
+})
